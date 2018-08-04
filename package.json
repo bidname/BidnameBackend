@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node MODE=prod ./service.js",
-    "startdev": "node MODE=dev ./service.js"
+    "start": "node ./service.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",

@@ -1,7 +1,7 @@
 /**
  * Created by lilu on 2018/8/3.
  */
-require('dotenv').config()
+// require('dotenv').config()
 const bidnameCloudFuncs = require('./cloud/bidname')
 const app = require('express')()
 const cors = require('cors')
