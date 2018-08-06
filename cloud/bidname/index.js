@@ -11,8 +11,10 @@ const { Schema } = mongoose
 
 
 async function getOpenOrderList(req,res){
-    let {limit,offset} = req.params
-    mongoose.connect(process.env.MONGODB_URL,mongdbAuth)
+    let limit = req.params.limit || 10
+    let offset = req.params.offset || 0
+
+  mongoose.connect(process.env.MONGODB_URL,mongdbAuth)
     mongoose.connection.on('connected', () => {
     console.info(`Mongoose default connection open to ${uri}`)
     })
@@ -25,8 +27,13 @@ async function getOpenOrderList(req,res){
     console.info('Mongoose default connection disconnected')
     })
     try{
-      let orderList = await OpenOrder.find({status: 1}).skip(offset||0).sort({adfee: -1}).limit(limit||10).exec()
-      res.json(orderList)
+      let orderList = await OpenOrder.find({status: 1}).skip(offset).sort({adfee: -1}).limit(limit).exec()
+      let orderCount = await OpenOrder.count({status: 1})
+      let returnJson = {
+        orderCount: orderCount,
+        orderList: orderList
+      }
+      res.json(returnJson)
     }catch(err){
       res.error(err)
     }
