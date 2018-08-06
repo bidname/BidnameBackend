@@ -10,84 +10,64 @@ const mongdbAuth = {user: process.env.MONGODB_USER, pass: process.env.MONGODB_PA
 const { Schema } = mongoose
 
 
-async function getOpenOrderList(req,res){
-    let limit = req.params.limit || 10
-    let offset = req.params.offset || 0
-
-  mongoose.connect(process.env.MONGODB_URL,mongdbAuth)
-    mongoose.connection.on('connected', () => {
-    console.info(`Mongoose default connection open to ${uri}`)
-    })
-
-    // Connection throws an error
-    mongoose.connection.on('error', console.error.bind(console, 'Mongoose default connection error:'))
-
-    // Connection is disconnected
-    mongoose.connection.on('disconnected', () => {
-    console.info('Mongoose default connection disconnected')
-    })
+async function getOpenOrderList(req,res,next) {
+    let limit = req.query.limit || 10
+    let offset = req.query.offset || 0
+    if(typeof (limit) != "number"){
+      limit = parseInt(limit)
+    }
+    if(typeof (offset) != "number"){
+      offset = parseInt(offset)
+    }  // mongoose.connect(process.env.MONGODB_URL,mongdbAuth)
+  //   mongoose.connection.on('connected', () => {
+  //   console.info(`Mongoose default connection open to ${uri}`)
+  //   })
+  //
+  //   // Connection throws an error
+  //   mongoose.connection.on('error', console.error.bind(console, 'Mongoose default connection error:'))
+  //
+  //   // Connection is disconnected
+  //   mongoose.connection.on('disconnected', () => {
+  //   console.info('Mongoose default connection disconnected')
+  //   })
     try{
-      let orderList = await OpenOrder.find({status: 1},null,{skip: offset, limit: limit, sort: {adfee: -1}}).exec()
       let orderCount = await OpenOrder.count({status: 1})
+      let orderList = await OpenOrder.find({status: 1},null,{skip: offset, limit: limit, sort: {'adfee.amount': -1}}).exec()
       let returnJson = {
         orderCount: orderCount,
         orderList: orderList
       }
       res.json(returnJson)
     }catch(err){
-      res.error(err)
+      next(err)
     }
 }
 
-async function getOrderByAcc(req,res){
-  let {acc} = req.params
-  mongoose.connect(process.env.MONGODB_URL,mongdbAuth)
-  mongoose.connection.on('connected', () => {
-    console.info(`Mongoose default connection open to ${uri}`)
-  })
-
-  // Connection throws an error
-  mongoose.connection.on('error', console.error.bind(console, 'Mongoose default connection error:'))
-
-  // Connection is disconnected
-  mongoose.connection.on('disconnected', () => {
-    console.info('Mongoose default connection disconnected')
-  })
+async function getOrderByAcc(req,res,next){
+  let {acc} = req.query
   try{
     let order = await OpenOrder.find({acc: acc}).exec()
     res.json(order)
   }catch(err){
-    res.error(err)
+    next(err)
   }
 
 }
 
-async function getOrderListBySeller(req,res){
-  let {seller} = req.params
-  mongoose.connect(process.env.MONGODB_URL,mongdbAuth)
-  mongoose.connection.on('connected', () => {
-    console.info(`Mongoose default connection open to ${uri}`)
-  })
-
-  // Connection throws an error
-  mongoose.connection.on('error', console.error.bind(console, 'Mongoose default connection error:'))
-
-  // Connection is disconnected
-  mongoose.connection.on('disconnected', () => {
-    console.info('Mongoose default connection disconnected')
-  })
+async function getOrderListBySeller(req,res,next){
+  let {seller} = req.query
   try{
     let orderList = await OpenOrder.find({seller: seller}).exec()
     res.json(orderList)
   }catch(err){
-    res.error(err)
+    next(err)
   }
 }
 
 const bidNameCloudFuncs = {
-  getOpenOrderList: getOpenOrderList,
-  getOrderByAcc: getOrderByAcc,
-  getOrderListBySeller: getOrderListBySeller
+  getOpenOrderList,
+  getOrderByAcc,
+  getOrderListBySeller
 
 
 }
