@@ -27,7 +27,7 @@ async function getOpenOrderList(req,res){
     console.info('Mongoose default connection disconnected')
     })
     try{
-      let orderList = await OpenOrder.find({status: 1}).skip(offset).sort({adfee: -1}).limit(limit).exec()
+      let orderList = await OpenOrder.find({status: 1},null,{skip: offset, limit: limit, sort: {adfee: -1}}).exec()
       let orderCount = await OpenOrder.count({status: 1})
       let returnJson = {
         orderCount: orderCount,
