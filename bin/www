@@ -102,7 +102,7 @@ const io = require('../utils/io')
 
 app.use(cors())
 
-app.use('/posts', postRoutes)
+// app.use('/posts', postRoutes)
 app.get('/getOpenOrderList', bidnameCloudFuncs.getOpenOrderList)
 app.get('/getOrderByAcc', bidnameCloudFuncs.getOrderByAcc)
 app.get('/getOrderBySeller', bidnameCloudFuncs.getOrderListBySeller)
