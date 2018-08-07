@@ -19,7 +19,7 @@ module.exports = {
     env_staging : {
       EOSIO_CONTRACT_ACCOUNT: "bidnamefirst",
       EOSIO_STARTING_BLOCK: 1,
-      EOSIO_HTTP_URL: 'https://api.kylin-testnet.eospace.io',
+      EOSIO_HTTP_URL: 'http://kylin.fn.eosbixin.com',
       PORT: 3000,
       MONGODB_URL: 'mongodb://localhost/bidname_stg',
       MONGODB_USER: 'bidname',
