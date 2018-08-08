@@ -44,7 +44,7 @@ class ActionHandler extends AbstractActionHandler {
     try {
       await handle(state, context)
     } catch (err) {
-      console.error(err)
+      console.error('err============>',err)
     }
   }
 
@@ -56,7 +56,7 @@ class ActionHandler extends AbstractActionHandler {
         isReplay
       }, { upsert: true }).exec()
     } catch (err) {
-      console.error(err)
+      console.error('err============>',err)
     }
   }
 
@@ -73,7 +73,7 @@ class ActionHandler extends AbstractActionHandler {
       }
       return { blockNumber: 0, blockHash: '' }
     } catch (err) {
-      console.error(err)
+      console.error('err============>',err)
     }
   }
 }
