@@ -103,14 +103,19 @@ async function setAdfee(state, payload, blockInfo, context) {
     symbol: '',
   }
   oldfee = parseTokenString(payload.data.adfee)
-  await OpenOrder.findOneAndUpdate({
-    acc: payload.data.acc,
-  },{
-    adfee: {
-      amount: oldfee.amount + order.adfee.amount,
-      symbol: order.adfee.symbol
-    }
-  })
+  try{
+    await OpenOrder.findOneAndUpdate({
+      acc: payload.data.acc,
+    },{
+      adfee: {
+        amount: oldfee.amount + order.adfee.amount,
+        symbol: order.adfee.symbol
+      }
+    })
+  }catch (err){
+    console.error(err)
+  }
+
 }
 
 

@@ -1,17 +1,21 @@
 /**
  * Created by lilu on 2018/8/2.
  */
-const {
-  readers: {
-    eos: { NodeosActionReader }
-  },
-  watchers: { BaseActionWatcher }
-} = require('demux-js')
+// const {
+//   readers: {
+//     eos: { NodeosActionReader }
+//   },
+//   watchers: { BaseActionWatcher }
+// } = require('demux-js')
+
+// const { NodeosActionReader } = require("./ActionReader")
+const { NodeosActionReader } = require("demux-eos")
 
 const ActionHandler = require('./ActionHandler')
 
 const updaters = require('./updaters')
 const effects = require('./effects')
+const  { BaseActionWatcher } = require("demux")
 
 const actionHandler = new ActionHandler(updaters, effects, process.env.MONGODB_URL, {user: process.env.MONGODB_USER,pass: process.env.MONGODB_PASS})
 

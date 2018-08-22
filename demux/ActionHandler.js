@@ -4,6 +4,10 @@
 const {
   handlers: { AbstractActionHandler }
 } = require('demux-js')
+// import AbstractActionHandler from ''
+// const { handlers: { AbstractActionHandler } } = require("demux")
+// const  { handlers: {AbstractActionHandler} } = require("demux")
+
 const mongoose = require('mongoose')
 const Order = require('../api/bidname/model')
 const BlockIndexState = require('../api/blockstate')
@@ -50,6 +54,7 @@ class ActionHandler extends AbstractActionHandler {
 
   async updateIndexState (state, block, isReplay) {
     try {
+      console.log('block--------------------->',block)
       await state.blockIndexState.update({}, {
         blockNumber: block.blockNumber,
         blockHash: block.blockHash,
@@ -76,6 +81,8 @@ class ActionHandler extends AbstractActionHandler {
       console.error('err============>',err)
     }
   }
+
+
 }
 
 module.exports = ActionHandler

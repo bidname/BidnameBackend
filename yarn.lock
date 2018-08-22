@@ -495,7 +495,15 @@ delayed-stream@~1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
 
-demux-js@^0.0.1-docs:
+demux-eos@^0.0.1-hotfix:
+  version "0.0.1-hotfix"
+  resolved "https://registry.npmjs.org/demux-eos/-/demux-eos-0.0.1-hotfix.tgz#1a580d08e617013483acfecd5e3d001f62b4d2a4"
+  dependencies:
+    demux-js "0.0.1-docs"
+    request "^2.87.0"
+    request-promise-native "^1.0.5"
+
+demux-js@0.0.1-docs, demux-js@^0.0.1-docs:
   version "0.0.1-docs"
   resolved "https://registry.npmjs.org/demux-js/-/demux-js-0.0.1-docs.tgz#5ce14f04c146326f8ab222ff2c30e9796c560948"
   dependencies:
@@ -503,6 +511,10 @@ demux-js@^0.0.1-docs:
     pg-promise "^8.4.5"
     request "^2.87.0"
     request-promise-native "^1.0.5"
+
+demux@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/demux/-/demux-1.0.3.tgz#193dd5f224b7e6dd10878e4d94bac69bbdda53b9"
 
 depd@1.1.1:
   version "1.1.1"
