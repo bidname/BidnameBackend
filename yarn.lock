@@ -512,9 +512,9 @@ demux-js@0.0.1-docs, demux-js@^0.0.1-docs:
     request "^2.87.0"
     request-promise-native "^1.0.5"
 
-demux@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/demux/-/demux-1.0.3.tgz#193dd5f224b7e6dd10878e4d94bac69bbdda53b9"
+demux@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/demux/-/demux-1.0.5.tgz#0edd60c296f2d728e5a4b6a398b2ec4f61602ab6"
 
 depd@1.1.1:
   version "1.1.1"

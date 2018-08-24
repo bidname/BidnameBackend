@@ -97,6 +97,6 @@ function onListening() {
  */
 
 // const server = app.listen(process.env.PORT, () => console.info(`Example app listening on port ${process.env.PORT}!`))
-// io.connect(server)
+io.connect(server)
 
 demux.watch()

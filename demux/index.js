@@ -8,8 +8,8 @@
 //   watchers: { BaseActionWatcher }
 // } = require('demux-js')
 
-// const { NodeosActionReader } = require("./ActionReader")
-const { NodeosActionReader } = require("demux-eos")
+const { NodeosActionReader } = require("./ActionReader")
+// const { NodeosActionReader } = require("demux-eos")
 
 const ActionHandler = require('./ActionHandler')
 

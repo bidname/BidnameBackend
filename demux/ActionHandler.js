@@ -1,9 +1,10 @@
 /**
  * Created by lilu on 2018/8/2.
  */
-const {
-  handlers: { AbstractActionHandler }
-} = require('demux-js')
+// const {
+//   handlers: { AbstractActionHandler }
+// } = require('demux-js')
+const { AbstractActionHandler } = require("demux")
 // import AbstractActionHandler from ''
 // const { handlers: { AbstractActionHandler } } = require("demux")
 // const  { handlers: {AbstractActionHandler} } = require("demux")
@@ -56,8 +57,8 @@ class ActionHandler extends AbstractActionHandler {
     try {
       console.log('block--------------------->',block)
       await state.blockIndexState.update({}, {
-        blockNumber: block.blockNumber,
-        blockHash: block.blockHash,
+        blockNumber: block.blockInfo.blockNumber,
+        blockHash: block.blockInfo.blockHash,
         isReplay
       }, { upsert: true }).exec()
     } catch (err) {
