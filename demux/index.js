@@ -21,7 +21,8 @@ const actionHandler = new ActionHandler(updaters, effects, process.env.MONGODB_U
 
 const actionReader = new NodeosActionReader(
   process.env.EOSIO_HTTP_URL,
-  parseInt(process.env.EOSIO_STARTING_BLOCK, 10) // First actions relevant to this dapp happen at this block
+  parseInt(process.env.EOSIO_STARTING_BLOCK, 10), // First actions relevant to this dapp happen at this block
+  true
 )
 
 const actionWatcher = new BaseActionWatcher(
