@@ -1,6 +1,8 @@
 node_modules
 npm-debug.log
 ecosystem.config.js
+key.pem
+cert.pem
 
 # VIM
 *~
