@@ -23,14 +23,7 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-var sslOptions = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem'),
-  passphrase: '123456'
-};
-
-// var server = http.createServer(app);
-var server = https.createServer(sslOptions, app);
+var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
