@@ -28,7 +28,7 @@ const actionReader = new NodeosActionReader(
 const actionWatcher = new BaseActionWatcher(
   actionReader,
   actionHandler,
-  100 // Poll at twice the block interval for less latency
+  450 // Poll at twice the block interval for less latency
 )
 
 module.exports = actionWatcher
